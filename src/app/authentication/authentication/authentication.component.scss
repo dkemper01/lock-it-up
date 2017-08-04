@@ -1,0 +1,125 @@
+.flex-center { 
+	margin: auto;
+	padding-bottom: 1em;
+
+	>svg {
+		vertical-align: middle;
+	}
+
+	.message-neighbor {
+		height: 8em;
+		float: right;
+    	margin-top: 2em;
+	}
+}
+
+.hide {
+	display: none;
+}
+
+
+.sync-cue {
+	width: 50px;
+}
+
+.lock {
+	width: 120px;
+}
+
+.dial {
+	position: absolute;
+    left: 37.5px;
+    top: 43px;
+    width: 76px;
+    opacity: 0.50;
+}
+
+.giaa-controls {
+	text-align: left;
+	position: relative;
+
+	label {
+		position: absolute;
+		left: 5px;
+		top: 5px;
+		color: #999;
+		font-size: 14px;
+		display: inline-block;
+		padding: 4px 10px;
+		margin-bottom: 0;
+		font-weight: 400;
+		background-color: rgba(255, 255, 255, 0);
+		-moz-transition: color 0.3s, top 0.3s, background-color 0.8s;
+		-o-transition: color 0.3s, top 0.3s, background-color 0.8s;
+		-webkit-transition: color 0.3s, top 0.3s, background-color 0.8s;
+		transition: color 0.3s, top 0.3s, background-color 0.8s;
+		z-index: 1000;
+	}
+
+	label.active {
+		top: -17px;
+		color: #555;
+		background-color: white;
+	}
+
+	.input-group {
+		margin: 0.5em 0 0.5em 0;
+
+		span {
+			color: #615a5a;
+		}
+
+		button {
+			outline: none;
+		}
+
+		button.hover-active {
+			background-color: #67596b;
+
+			>.fa {
+				color: white;
+			}
+		}
+
+		button.default {
+			background-color: #eceeef;
+		}
+
+		/*button > span:hover {
+			color: green;
+		}*/
+	}
+
+	&.has-danger-cue {
+		input {
+			border-left: red solid 4px;
+		}
+	}
+}
+
+@media (min-width: 320px) {
+	.message-neighbor {
+		width: 18em;
+		font-size: 0.70em;
+	}
+}
+
+@media (min-width: 425px) {
+	.message-neighbor {
+		width: 20em;
+		font-size: 0.75em;
+	}
+}
+
+@media (min-width: 768px) {
+	.col-md-3 {
+		flex: 0 1 80%;
+		width: 20em;
+		max-width: 100%;
+	}
+
+	.message-neighbor {
+		width: 30em;
+		font-size: 0.75em;
+	}
+}

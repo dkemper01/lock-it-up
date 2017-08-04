@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "angular-giaa"
+    "name": "lock-it-up"
   },
   "apps": [
     {
@@ -19,9 +19,19 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "../node_modules/bootstrap/scss/bootstrap.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/tether/dist/js/tether.min.js",        
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/hammerjs/hammer.min.js",
+        "../node_modules/hammerjs/hammer-time.js",
+        "./gsap/src/minified/TweenMax.min.js",
+        "./gsap/src/minified/plugins/MorphSVGPlugin.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <form novalidate (ngSubmit)="login()" [formGroup]="authForm">
+          <div class="row">
+            <div class="col-md-offset-3 col-md-9 flex-center">
+              <div class="giaa-controls form-group" [ngClass]="{'has-danger-cue': authForm.errors}">
+                <div class="input-group">
+                  <input #password [type]="isShowPasswordActive ? 'text' : 'password'" class="float-label form-control" id="password" name="password" formControlName="password" (focus)="focus('_passwordFocused')"
+                    (focusout)="focusOut('_passwordFocused', password.value)" tabindex="1">
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isShowPasswordActive }" (click)="show('password')"><span class="fa fa-eye" type="button"></span></button>
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isClearPasswordActive }" (click)="clear('password')" (tap)="clear('password')" (touchstart)="clearState('password', true)" (touchend)="clearState('password', false)" type="button"><span class="fa fa-times-circle-o"></span></button>
+                </div>
+                <!-- 
+                Why are the hoverClass "attributes directives" surrounded by brackets?  
+                Template binding works with properties and events, not attributes.
+                Attributes are defined by HTML. Properties are defined by the DOM (Document Object Model).
+                The brackets tell Angular to evaluate the template expression. If you omit the brackets, 
+                Angular treats the string as a constant and initializes the target property with that string. 
+                It does not evaluate the string!  This is, however, exactly what we want.  We want to 
+                initialize directive property 'hoverClass' with a value of 'active'. 
+              -->
+                <label for="password" hoverClass="active" [ngClass]="{'active': passwordFocused }">Password</label>         
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-3 col-md-9 flex-center">
+              <div class="giaa-controls form-group" [ngClass]="{'has-danger-cue': authForm.errors}">
+                <div class="input-group">
+                  <input #confirmPassword [type]="isShowConfirmPasswordActive ? 'text' : 'password'" class="float-label form-control" id="confirmPassword" name="confirmPassword" type="password" formControlName="confirmPassword" (focus)="focus('_confirmPasswordFocused')"
+                  (focusout)="focusOut('_confirmPasswordFocused', confirmPassword.value)" tabindex="2">
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isShowConfirmPasswordActive }" (click)="show('confirmPassword')"><span class="fa fa-eye" type="button"></span></button>
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isClearConfirmPasswordActive }" (click)="clear('confirmPassword')" (tap)="clear('confirmPassword')" (touchstart)="clearState('confirmPassword', true)" (touchend)="clearState('confirmPassword', false)" type="button"><span class="fa fa-times-circle-o"></span></button>
+                </div>
+                <label for="confirmPassword" hoverClass="active" [ngClass]="{'active': confirmPasswordFocused }">Confirm Password</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-3 col-md-3 flex-center">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 58 58" xml:space="preserve" class="lock">
+                <path #unlockedArm id="unlockedArm" style="fill:none;stroke:#D8A852;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="
+                  M38,22.866V11.219C38,6.149,33.5,2,28,2s-10,4.149-10,9.219"/>
+                <path #lockedArm id="lockedArm" style="fill:none;stroke:#D8A852;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;display:none;" d="
+                  M39,22.866V11.219C39,6.149,34.5,2,29,2s-10,4.149-10,9.219v11.647"/>
+                <circle style="fill:#E7ECED;" cx="29" cy="39" r="19"/>
+                <path style="fill:#C7CAC7;" d="M48,39c0-10.493-8.507-19-19-19v38C39.493,58,48,49.493,48,39z"/>     
+              </svg>
+              <img #dial src="../../../assets/combination-dial.svg" class="sync-cue dial" />
+              <div class="message-neighbor">
+                <div class="help-block" *ngIf="confirmPasswordMessage">
+                  {{ confirmPasswordMessage }}
+                </div>
+                <div class="help-block" *ngIf="passwordMessage">
+                  {{ passwordMessage }}
+                </div>
+            </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
