@@ -162,7 +162,7 @@ AuthenticationModule = __decorate([
 /***/ "../../../../../src/app/authentication/authentication/authentication.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"panel-body\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <form novalidate (ngSubmit)=\"login()\" [formGroup]=\"authForm\">\n          <div class=\"row\">\n            <div class=\"col-md-offset-3 col-md-9 flex-center\">\n              <div class=\"giaa-controls form-group\" [ngClass]=\"{'has-danger-cue': authForm.errors}\">\n                <div class=\"input-group\">\n                  <input #password [type]=\"isShowPasswordActive ? 'text' : 'password'\" class=\"float-label form-control\" id=\"password\" name=\"password\" formControlName=\"password\" (focus)=\"focus('_passwordFocused')\"\n                    (focusout)=\"focusOut('_passwordFocused', password.value)\" tabindex=\"1\">\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isShowPasswordActive }\" (click)=\"show('password')\"><span class=\"fa fa-eye\"></span></button>\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isClearPasswordActive }\" (click)=\"clear('password')\" (tap)=\"clear('password')\" (touchstart)=\"clearState('password', true)\" (touchend)=\"clearState('password', false)\" type=\"button\"><span class=\"fa fa-times-circle-o\"></span></button>\n                </div>\n                <!-- \n                Why are the hoverClass \"attributes directives\" surrounded by brackets?  \n                Template binding works with properties and events, not attributes.\n                Attributes are defined by HTML. Properties are defined by the DOM (Document Object Model).\n                The brackets tell Angular to evaluate the template expression. If you omit the brackets, \n                Angular treats the string as a constant and initializes the target property with that string. \n                It does not evaluate the string!  This is, however, exactly what we want.  We want to \n                initialize directive property 'hoverClass' with a value of 'active'. \n              -->\n                <label for=\"password\" hoverClass=\"active\" [ngClass]=\"{'active': passwordFocused }\">Password</label>         \n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-offset-3 col-md-9 flex-center\">\n              <div class=\"giaa-controls form-group\" [ngClass]=\"{'has-danger-cue': authForm.errors}\">\n                <div class=\"input-group\">\n                  <input #confirmPassword [type]=\"isShowConfirmPasswordActive ? 'text' : 'password'\" class=\"float-label form-control\" id=\"confirmPassword\" name=\"confirmPassword\" type=\"password\" formControlName=\"confirmPassword\" (focus)=\"focus('_confirmPasswordFocused')\"\n                  (focusout)=\"focusOut('_confirmPasswordFocused', confirmPassword.value)\" tabindex=\"2\">\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isShowConfirmPasswordActive }\" (click)=\"show('confirmPassword')\"><span class=\"fa fa-eye\"></span></button>\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isClearConfirmPasswordActive }\" (click)=\"clear('confirmPassword')\" (tap)=\"clear('confirmPassword')\" (touchstart)=\"clearState('confirmPassword', true)\" (touchend)=\"clearState('confirmPassword', false)\" type=\"button\"><span class=\"fa fa-times-circle-o\"></span></button>\n                </div>\n                <label for=\"confirmPassword\" hoverClass=\"active\" [ngClass]=\"{'active': confirmPasswordFocused }\">Confirm Password</label>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-offset-3 col-md-3 flex-center\">\n              <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n                viewBox=\"0 0 58 58\" xml:space=\"preserve\" class=\"lock\">\n                <path #unlockedArm id=\"unlockedArm\" style=\"fill:none;stroke:#D8A852;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;\" d=\"\n                  M38,22.866V11.219C38,6.149,33.5,2,28,2s-10,4.149-10,9.219\"/>\n                <path #lockedArm id=\"lockedArm\" style=\"fill:none;stroke:#D8A852;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;display:none;\" d=\"\n                  M39,22.866V11.219C39,6.149,34.5,2,29,2s-10,4.149-10,9.219v11.647\"/>\n                <circle style=\"fill:#E7ECED;\" cx=\"29\" cy=\"39\" r=\"19\"/>\n                <path style=\"fill:#C7CAC7;\" d=\"M48,39c0-10.493-8.507-19-19-19v38C39.493,58,48,49.493,48,39z\"/>     \n              </svg>\n              <img #dial src=\"assets/combination-dial.svg\" class=\"sync-cue dial\" />\n              <div class=\"message-neighbor\">\n                <div class=\"help-block\" *ngIf=\"confirmPasswordMessage\">\n                  {{ confirmPasswordMessage }}\n                </div>\n                <div class=\"help-block\" *ngIf=\"passwordMessage\">\n                  {{ passwordMessage }}\n                </div>\n            </div>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"panel-body\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <form novalidate (ngSubmit)=\"login()\" [formGroup]=\"authForm\">\n          <div class=\"row\">\n            <div class=\"col-md-offset-3 col-md-9 flex-center\">\n              <div class=\"giaa-controls form-group\" [ngClass]=\"{'has-danger-cue': authForm.errors}\">\n                <div class=\"input-group\">\n                  <input #password [type]=\"isShowPasswordActive ? 'text' : 'password'\" class=\"float-label form-control\" id=\"password\" name=\"password\" formControlName=\"password\" (focus)=\"focus('_passwordFocused')\"\n                    (focusout)=\"focusOut('_passwordFocused', password.value)\" tabindex=\"1\">\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isShowPasswordActive }\" (click)=\"show('password')\" type=\"button\" role=\"button\"><span class=\"fa fa-eye\"></span></button>\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isClearPasswordActive }\" (click)=\"clear('password')\" (tap)=\"clear('password')\" (touchstart)=\"clearState('password', true)\" (touchend)=\"clearState('password', false)\" type=\"button\" role=\"button\"><span class=\"fa fa-times-circle-o\"></span></button>\n                </div>\n                <!-- \n                Why are the hoverClass \"attributes directives\" surrounded by brackets?  \n                Template binding works with properties and events, not attributes.\n                Attributes are defined by HTML. Properties are defined by the DOM (Document Object Model).\n                The brackets tell Angular to evaluate the template expression. If you omit the brackets, \n                Angular treats the string as a constant and initializes the target property with that string. \n                It does not evaluate the string!  This is, however, exactly what we want.  We want to \n                initialize directive property 'hoverClass' with a value of 'active'. \n              -->\n                <label for=\"password\" hoverClass=\"active\" [ngClass]=\"{'active': passwordFocused }\">Password</label>         \n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-offset-3 col-md-9 flex-center\">\n              <div class=\"giaa-controls form-group\" [ngClass]=\"{'has-danger-cue': authForm.errors}\">\n                <div class=\"input-group\">\n                  <input #confirmPassword [type]=\"isShowConfirmPasswordActive ? 'text' : 'password'\" class=\"float-label form-control\" id=\"confirmPassword\" name=\"confirmPassword\" type=\"password\" formControlName=\"confirmPassword\" (focus)=\"focus('_confirmPasswordFocused')\"\n                  (focusout)=\"focusOut('_confirmPasswordFocused', confirmPassword.value)\" tabindex=\"2\">\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isShowConfirmPasswordActive }\" (click)=\"show('confirmPassword')\" type=\"button\" role=\"button\"><span class=\"fa fa-eye\"></span></button>\n                  <button class=\"input-group-addon\" [ngClass]=\"{ 'hover-active': isClearConfirmPasswordActive }\" (click)=\"clear('confirmPassword')\" (tap)=\"clear('confirmPassword')\" (touchstart)=\"clearState('confirmPassword', true)\" (touchend)=\"clearState('confirmPassword', false)\" type=\"button\" role=\"button\"><span class=\"fa fa-times-circle-o\"></span></button>\n                </div>\n                <label for=\"confirmPassword\" hoverClass=\"active\" [ngClass]=\"{'active': confirmPasswordFocused }\">Confirm Password</label>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-offset-3 col-md-3 flex-center\">\n              <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n                viewBox=\"0 0 58 58\" xml:space=\"preserve\" class=\"lock\">\n                <path #unlockedArm id=\"unlockedArm\" style=\"fill:none;stroke:#D8A852;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;\" d=\"\n                  M38,22.866V11.219C38,6.149,33.5,2,28,2s-10,4.149-10,9.219\"/>\n                <path #lockedArm id=\"lockedArm\" style=\"fill:none;stroke:#D8A852;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;display:none;\" d=\"\n                  M39,22.866V11.219C39,6.149,34.5,2,29,2s-10,4.149-10,9.219v11.647\"/>\n                <circle style=\"fill:#E7ECED;\" cx=\"29\" cy=\"39\" r=\"19\"/>\n                <path style=\"fill:#C7CAC7;\" d=\"M48,39c0-10.493-8.507-19-19-19v38C39.493,58,48,49.493,48,39z\"/>     \n              </svg>\n              <img #dial src=\"assets/combination-dial.svg\" class=\"sync-cue dial\" />\n              <div class=\"message-neighbor\">\n                <div class=\"help-block\" *ngIf=\"confirmPasswordMessage\">\n                  {{ confirmPasswordMessage }}\n                </div>\n                <div class=\"help-block\" *ngIf=\"passwordMessage\">\n                  {{ passwordMessage }}\n                </div>\n            </div>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -282,21 +282,19 @@ var AuthenticationComponent = (function () {
         }, { validator: this.confirmationValidator.passwordMatcher });
         var passwordControl = this.authForm.get('password');
         var confirmPasswordControl = this.authForm.get('confirmPassword');
-        var random = new __WEBPACK_IMPORTED_MODULE_3__shared_randomNumberGenerators__["a" /* Random */]();
         passwordControl.valueChanges
             .debounceTime(1000)
             .distinctUntilChanged()
             .subscribe(function (value) {
             _this.setPasswordMessage(passwordControl);
             if (confirmPasswordControl.value.length > 0) {
+                _this.setConfirmPasswordMessage(confirmPasswordControl);
                 _this.lockTransition();
             }
         });
         confirmPasswordControl.valueChanges
             .merge(confirmPasswordControl.valueChanges.throttleTime(1000), confirmPasswordControl.valueChanges.debounceTime(1000))
             .subscribe(function (value) {
-            _this.rotateBy = -_this.rotateBy;
-            TweenMax.to(_this.dialRef.nativeElement, 1, { transformOrigin: "center", rotation: (_this.rotateBy + random.getRandomInt(1, 100)), ease: Back.easeOut.config(3) });
             _this.setConfirmPasswordMessage(confirmPasswordControl);
             _this.lockTransition();
         });
@@ -341,13 +339,12 @@ var AuthenticationComponent = (function () {
             this.isClearConfirmPasswordActive = down;
         }
     };
-    /*
-  * @method setPasswordMessage
-  * Display a validation message if the input element is touched or dirty, and has errors.
-  * The errors collection uses the validation rule name as the key.  Our data structure above
-  * does too.
-  * @param {AbstractControl} c
-  */
+    /**
+    * Display a validation message if the input element is touched or dirty, and has errors.
+    * The errors collection uses the validation rule name as the key.  Our data structure above
+    * does too.
+    * @param {AbstractControl} c
+    */
     AuthenticationComponent.prototype.setPasswordMessage = function (c) {
         this.passwordMessage = '';
         this.passwordMessage = this.getErrorMessage(c);
@@ -356,23 +353,27 @@ var AuthenticationComponent = (function () {
         this.confirmPasswordMessage = '';
         this.confirmPasswordMessage = this.getErrorMessage(c.parent);
     };
-    /*
-    * @method lockTransition
+    /**
     * Performs the GSAP MorphSVG transition from the unlocked arm to the locked arm and vice versa,
     * depending on the state of the input match.
     */
     AuthenticationComponent.prototype.lockTransition = function () {
-        if ((this.confirmPasswordControl.value.length > 0 && this.passwordControl.value.length > 0) &&
+        var _this = this;
+        if ((this.confirmPasswordControl.value.length > 0 &&
+            this.passwordControl.value.length > 0) &&
             (this.confirmPasswordControl.value === this.passwordControl.value)) {
-            TweenMax.to(this.unlockedArmRef.nativeElement, 1, { morphSVG: { shape: '#lockedArm' } });
-            this.locked = true;
+            TweenMax.to(this.unlockedArmRef.nativeElement, 1, { morphSVG: { shape: '#lockedArm' }, onComplete: function () { _this.locked = true; } });
         }
         else if (this.locked) {
-            TweenMax.to(this.unlockedArmRef.nativeElement, 1, { morphSVG: { shape: '#unlockedArm' } });
+            var lockTimeline = new TimelineLite();
+            var random = new __WEBPACK_IMPORTED_MODULE_3__shared_randomNumberGenerators__["a" /* Random */]();
+            lockTimeline.to(this.dialRef.nativeElement, 0.75, { transformOrigin: "center", rotation: (this.rotateBy + random.getRandomInt(1, 100)), ease: Back.easeOut.config(3) });
+            lockTimeline.to(this.dialRef.nativeElement, 0.75, { transformOrigin: "center", rotation: -(this.rotateBy + random.getRandomInt(1, 100)), ease: Back.easeOut.config(3) });
+            lockTimeline.to(this.unlockedArmRef.nativeElement, 0.5, { morphSVG: { shape: '#unlockedArm' }, onComplete: function () { _this.locked = false; } }, "+=1");
+            lockTimeline.play();
         }
     };
-    /*
-    * @method getErrorMessage
+    /**
     * Fetch the error message from the messages object using the key from the
     * errors collection of the AbstractControl object.
     */
@@ -403,7 +404,17 @@ AuthenticationComponent = __decorate([
         selector: 'giaa',
         template: __webpack_require__("../../../../../src/app/authentication/authentication/authentication.component.html"),
         styles: [__webpack_require__("../../../../../src/app/authentication/authentication/authentication.component.scss")]
-    }),
+    })
+    /**
+     * Contains the view logic for the main layout.  Concerns addressed in this component are:
+     * - Determining if an input control has focus, a condition which allows the label to
+     * double as a placeholder.
+     * - Management of the Reactive FormGroup instance including:
+     *  - RxJS subscriptions executed on `FormControl.valueChanges`
+     *  - Custom validator: `InputConfirmationValidator`
+     * - Animations via GSAP's `TweenMax` and `TimelineMax`
+     */
+    ,
     __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormBuilder */]) === "function" && _d || Object])
 ], AuthenticationComponent);
 

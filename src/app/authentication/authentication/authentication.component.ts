@@ -14,6 +14,16 @@ import 'rxjs/add/operator/throttleTime';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
+
+/**
+ * Contains the view logic for the main layout.  Concerns addressed in this component are:
+ * - Determining if an input control has focus, a condition which allows the label to 
+ * double as a placeholder.
+ * - Management of the Reactive FormGroup instance including:
+ *  - RxJS subscriptions executed on `FormControl.valueChanges`
+ *  - Custom validator: `InputConfirmationValidator`
+ * - Animations via GSAP's `TweenMax` and `TimelineMax`
+ */
 export class AuthenticationComponent implements OnInit, AfterViewInit {
 
   authForm: FormGroup;
@@ -55,7 +65,6 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
   private passwordMessage: string;
   private confirmPasswordMessage: string;
   private confirmationValidator: InputConfirmationValidator;
-  private random: Random;
 
   /*
   * @property validationMessages
@@ -81,7 +90,6 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
 
     const passwordControl = this.authForm.get('password');
     const confirmPasswordControl = this.authForm.get('confirmPassword');
-    const random = new Random();
 
     passwordControl.valueChanges
       .debounceTime(1000)
@@ -89,6 +97,7 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
       .subscribe((value) => { 
         this.setPasswordMessage(passwordControl); 
         if (confirmPasswordControl.value.length > 0) {
+          this.setConfirmPasswordMessage(confirmPasswordControl);
           this.lockTransition();
         }
       });
@@ -96,8 +105,6 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
     confirmPasswordControl.valueChanges
       .merge(confirmPasswordControl.valueChanges.throttleTime(1000), confirmPasswordControl.valueChanges.debounceTime(1000))
       .subscribe((value) => { 
-        this.rotateBy = -this.rotateBy;
-        TweenMax.to(this.dialRef.nativeElement, 1, { transformOrigin: "center", rotation: (this.rotateBy + random.getRandomInt(1, 100)), ease: Back.easeOut.config(3) });
           this.setConfirmPasswordMessage(confirmPasswordControl); 
           this.lockTransition();
       });
@@ -149,8 +156,7 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
     }
   }
 
-    /* 
-  * @method setPasswordMessage
+  /**
   * Display a validation message if the input element is touched or dirty, and has errors.
   * The errors collection uses the validation rule name as the key.  Our data structure above
   * does too.  
@@ -166,24 +172,27 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
     this.confirmPasswordMessage = this.getErrorMessage(c.parent);
   }
 
-  /*
-  * @method lockTransition
+  /**
   * Performs the GSAP MorphSVG transition from the unlocked arm to the locked arm and vice versa, 
   * depending on the state of the input match.
   */
   private lockTransition() {
 
-    if ((this.confirmPasswordControl.value.length > 0 && this.passwordControl.value.length > 0) &&
-      (this.confirmPasswordControl.value === this.passwordControl.value)) {
-      TweenMax.to(this.unlockedArmRef.nativeElement, 1, { morphSVG: { shape: '#lockedArm'} });
-      this.locked = true;
+    if ((this.confirmPasswordControl.value.length > 0 && 
+        this.passwordControl.value.length > 0) &&
+        (this.confirmPasswordControl.value === this.passwordControl.value)) {
+      TweenMax.to(this.unlockedArmRef.nativeElement, 1, { morphSVG: { shape: '#lockedArm'}, onComplete: () => { this.locked = true; } });
     } else if (this.locked) {
-      TweenMax.to(this.unlockedArmRef.nativeElement, 1, { morphSVG: { shape: '#unlockedArm'} });     
+      let lockTimeline = new TimelineLite();
+      let random = new Random();
+      lockTimeline.to(this.dialRef.nativeElement, 0.75, { transformOrigin: "center", rotation: (this.rotateBy + random.getRandomInt(1, 100)), ease: Back.easeOut.config(3) });
+      lockTimeline.to(this.dialRef.nativeElement, 0.75, { transformOrigin: "center", rotation: -(this.rotateBy + random.getRandomInt(1, 100)), ease: Back.easeOut.config(3) });
+      lockTimeline.to(this.unlockedArmRef.nativeElement, 0.5, { morphSVG: { shape: '#unlockedArm'}, onComplete: () => { this.locked = false; } } , "+=1");   
+      lockTimeline.play();  
     }
   }
 
-  /*
-  * @method getErrorMessage
+  /**
   * Fetch the error message from the messages object using the key from the 
   * errors collection of the AbstractControl object.
   */

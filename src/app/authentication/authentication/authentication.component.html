@@ -9,8 +9,8 @@
                 <div class="input-group">
                   <input #password [type]="isShowPasswordActive ? 'text' : 'password'" class="float-label form-control" id="password" name="password" formControlName="password" (focus)="focus('_passwordFocused')"
                     (focusout)="focusOut('_passwordFocused', password.value)" tabindex="1">
-                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isShowPasswordActive }" (click)="show('password')" type="button"><span class="fa fa-eye"></span></button>
-                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isClearPasswordActive }" (click)="clear('password')" (tap)="clear('password')" (touchstart)="clearState('password', true)" (touchend)="clearState('password', false)" type="button"><span class="fa fa-times-circle-o"></span></button>
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isShowPasswordActive }" (click)="show('password')" type="button" role="button"><span class="fa fa-eye"></span></button>
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isClearPasswordActive }" (click)="clear('password')" (tap)="clear('password')" (touchstart)="clearState('password', true)" (touchend)="clearState('password', false)" type="button" role="button"><span class="fa fa-times-circle-o"></span></button>
                 </div>
                 <!-- 
                 Why are the hoverClass "attributes directives" surrounded by brackets?  
@@ -31,8 +31,8 @@
                 <div class="input-group">
                   <input #confirmPassword [type]="isShowConfirmPasswordActive ? 'text' : 'password'" class="float-label form-control" id="confirmPassword" name="confirmPassword" type="password" formControlName="confirmPassword" (focus)="focus('_confirmPasswordFocused')"
                   (focusout)="focusOut('_confirmPasswordFocused', confirmPassword.value)" tabindex="2">
-                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isShowConfirmPasswordActive }" (click)="show('confirmPassword')" type="button"><span class="fa fa-eye"></span></button>
-                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isClearConfirmPasswordActive }" (click)="clear('confirmPassword')" (tap)="clear('confirmPassword')" (touchstart)="clearState('confirmPassword', true)" (touchend)="clearState('confirmPassword', false)" type="button"><span class="fa fa-times-circle-o"></span></button>
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isShowConfirmPasswordActive }" (click)="show('confirmPassword')" type="button" role="button"><span class="fa fa-eye"></span></button>
+                  <button class="input-group-addon" [ngClass]="{ 'hover-active': isClearConfirmPasswordActive }" (click)="clear('confirmPassword')" (tap)="clear('confirmPassword')" (touchstart)="clearState('confirmPassword', true)" (touchend)="clearState('confirmPassword', false)" type="button" role="button"><span class="fa fa-times-circle-o"></span></button>
                 </div>
                 <label for="confirmPassword" hoverClass="active" [ngClass]="{'active': confirmPasswordFocused }">Confirm Password</label>
               </div>
