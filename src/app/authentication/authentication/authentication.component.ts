@@ -2,12 +2,7 @@ import { Component, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angula
 import { AbstractControl, FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 import { InputConfirmationValidator } from '../../shared/inputConfirmationValidator';
 import { Random } from '../../shared/randomNumberGenerators';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/last';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/throttleTime';
+import { debounceTime, distinctUntilChanged, first, last, merge, throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'giaa',
@@ -91,19 +86,23 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
     const passwordControl = this.authForm.get('password');
     const confirmPasswordControl = this.authForm.get('confirmPassword');
 
-    passwordControl.valueChanges
-      .debounceTime(1000)
-      .distinctUntilChanged()
-      .subscribe((value) => { 
-        this.setPasswordMessage(passwordControl); 
-        if (confirmPasswordControl.value.length > 0) {
-          this.setConfirmPasswordMessage(confirmPasswordControl);
-          this.lockTransition();
-        }
-      });
+    passwordControl.valueChanges.pipe(
+      debounceTime(1000),
+      distinctUntilChanged()
+    )
+    .subscribe((value) => { 
+      this.setPasswordMessage(passwordControl); 
+      if (confirmPasswordControl.value.length > 0) {
+        this.setConfirmPasswordMessage(confirmPasswordControl);
+        this.lockTransition();
+      }
+    })
 
-    confirmPasswordControl.valueChanges
-      .merge(confirmPasswordControl.valueChanges.throttleTime(1000), confirmPasswordControl.valueChanges.debounceTime(1000))
+    confirmPasswordControl.valueChanges.pipe(
+      merge(
+        confirmPasswordControl.valueChanges.pipe(throttleTime(1000)), 
+        confirmPasswordControl.valueChanges.pipe(debounceTime(1000))
+      ))
       .subscribe((value) => { 
           this.setConfirmPasswordMessage(confirmPasswordControl); 
           this.lockTransition();
