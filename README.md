@@ -1,6 +1,6 @@
 # Lock it Up
 
-This is an Angular Reactive Form for input confirmation that uses GSAP to provide the user an animated validation cue.  Reactive forms shift a lot of view-based logic from the markup to the component.  I wanted to demonstrate this principle using this project.  Checkout the Angular 5 update branch here (https://github.com/dkemper01/lock-it-up/tree/angular5-update-1).  
+This is an Angular Reactive Form for input confirmation that uses GSAP to provide the user an animated validation cue.  Reactive forms shift a lot of view-based logic from the markup to the component.  I wanted to demonstrate this principle using this project.  Lock it Up has been fully upgraded to Angular 5.  Checkout the Angular 5 upgrade branch here (https://github.com/dkemper01/lock-it-up/tree/angular5-update-1).  
 
 ## Development server
 
